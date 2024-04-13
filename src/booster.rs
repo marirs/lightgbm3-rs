@@ -96,6 +96,17 @@ impl Booster {
         // get nessesary buffer size
 
         let mut out_size = 0_i64;
+        #[cfg(target_arch = "aarch64")]
+        lgbm_call!(lightgbm3_sys::LGBM_BoosterSaveModelToString(
+            self.handle,
+            0_i32,
+            -1_i32,
+            0_i32,
+            0,
+            &mut out_size as *mut _,
+            std::ptr::null_mut() as *mut u8
+        ))?;
+        #[cfg(target_arch = "x86_64")]
         lgbm_call!(lightgbm3_sys::LGBM_BoosterSaveModelToString(
             self.handle,
             0_i32,
