@@ -36,6 +36,7 @@ fn main() {
 
     // CMake
     let mut cfg = Config::new(&lgbm_root);
+    cfg.define("CMAKE_POLICY_VERSION_MINIMUM", "3.5");
     let cfg = cfg
         .profile("Release")
         .uses_cxx11()
